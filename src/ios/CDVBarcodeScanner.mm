@@ -103,7 +103,7 @@
 @property (nonatomic, retain) UIView * reticleView;
 // unsafe_unretained is equivalent to assign - used to prevent retain cycles in the property below
 @property (nonatomic, unsafe_unretained) id orientationDelegate;
-@property (nonatomic, getter=isModalInPresentation) BOOL modalInPresentation;
+@property (nonatomic, assign) UIModalPresentationStyle modalPresentationStyle;
 
 - (id)initWithProcessor:(CDVbcsProcessor*)processor alternateOverlay:(NSString *)alternateXib;
 - (void)startCapturing;
@@ -354,7 +354,7 @@ parentViewController:(UIViewController*)parentViewController
     self.viewController.orientationDelegate = self.plugin.viewController;
 
     if (@available(iOS 13.0, *)) {
-        self.viewController.modalInPresentation = YES;
+        self.viewController.modalPresentationStyle = UIModalPresentationFullScreen;
     }
 
     // delayed [self openDialog];
